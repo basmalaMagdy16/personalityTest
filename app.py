@@ -7,6 +7,8 @@ import os
 from collections import OrderedDict
 
 app = Flask(__name__)
+# السطر ده هو السر اللي هيخلي الترتيب يظهر للباك إند زي ما إنتي عايزة بالظبط
+app.config['JSON_SORT_KEYS'] = False 
 CORS(app)
 
 MODEL_PATH = "mbti_model.joblib"
