@@ -8,10 +8,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# تم تعديل الأسماء هنا لتطابق الصورة اللي بعتيها بالظبط
 MODEL_PATH = "mbti_model.joblib"
-ENCODER_PATH = "encoder.joblib"       # كان اسمه label_encoder في الكود القديم
-FEATURES_PATH = "selected features.json" # تم إضافة المسافة بدلاً من الشرطة
+ENCODER_PATH = "encoder.joblib"        
+FEATURES_PATH = "selected features.json"       
 DICT_PATH = "dictionary.json"
 
 model = None
@@ -32,9 +31,9 @@ try:
     # تحميل قاموس الشخصيات
     with open(DICT_PATH, 'r') as f:
         mbti_dict = json.load(f)
-    print("✅ All CareerPro files loaded successfully!")
+    print(" All CareerPro files loaded successfully!")
 except Exception as e:
-    print(f"❌ Error loading files: {str(e)}")
+    print(f" Error loading files: {str(e)}")
 
 @app.route('/')
 def home():
@@ -75,3 +74,4 @@ def predict():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8000))
     app.run(host='0.0.0.0', port=port)
+
