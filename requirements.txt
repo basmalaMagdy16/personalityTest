@@ -1,0 +1,7 @@
+flask
+flask-cors
+xgboost>=2.0.0
+scikit-learn==1.6.1
+pandas
+joblib
+numpy
