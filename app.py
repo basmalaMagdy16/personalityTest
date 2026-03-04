@@ -7,8 +7,7 @@ import os
 from collections import OrderedDict
 
 app = Flask(__name__)
-# السطر ده هو السر اللي هيخلي الترتيب يظهر للباك إند زي ما إنتي عايزة بالظبط
-app.config['JSON_SORT_KEYS'] = False 
+app.config['JSON_SORT_KEYS'] = False
 CORS(app)
 
 MODEL_PATH = "mbti_model.joblib"
@@ -61,10 +60,15 @@ def predict():
             ("suggestedCareers", info.get('suggestedCareers', []))
         ])
         
-        return jsonify(response_data)
+        return app.response_class(
+            response=json.dumps(response_data),
+            status=200,
+            mimetype='application/json'
+        )
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8000))
     app.run(host='0.0.0.0', port=port)
+
